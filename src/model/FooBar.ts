@@ -1,5 +1,7 @@
 import "reflect-metadata";
-import { injectable } from "tsyringe";
+import { inject, injectable } from "tsyringe";
+
+const BarKey = Symbol("BAR");
 
 interface IBar {
   greet(): void;
@@ -7,15 +9,19 @@ interface IBar {
 
 @injectable()
 export class Bar implements IBar {
-  constructor() {}
+  constructor() {
+    this.val = Math.random();
+  }
+
+  val: number;
 
   greet(): void {
-    console.log("Hello.");
+    console.log("Hello.", this.val);
   }
 }
 
 export class Foo {
-  constructor(private readonly bar: IBar) {}
+  constructor(@inject(BarKey) private readonly bar: IBar) {}
 
   greet(): void {
     this.bar.greet();

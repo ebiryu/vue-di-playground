@@ -3,19 +3,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, inject } from "vue";
 import { Bar, Foo } from "../model/FooBar";
 
 export default defineComponent({
   setup() {
+    const foo = inject<Foo>("bar");
     const greet = () => {
-      new Foo(new Bar()).greet();
+      foo?.greet();
     };
     return { greet };
   },
 });
 </script>
-
 
 <style scoped>
 </style>

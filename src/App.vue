@@ -1,17 +1,22 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <!-- <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" /> -->
-  <Foo />
+  <FooComponents />
+  <FooComponents />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Foo from "./components/Foo.vue";
+import { defineComponent, provide } from "vue";
+import FooComponents from "./components/Foo.vue";
+import { Bar, Foo } from "./model/FooBar";
 
 export default defineComponent({
   name: "App",
   components: {
-    Foo,
+    FooComponents,
+  },
+  setup() {
+    provide("bar", new Foo(new Bar()));
   },
 });
 </script>
