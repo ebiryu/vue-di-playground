@@ -1,13 +1,13 @@
 import "reflect-metadata";
 import { inject, injectable } from "tsyringe";
 
-const BarKey = Symbol("BAR");
+export const BarKey = Symbol("BAR");
+export const FooKey = Symbol("FOO");
 
 interface IBar {
   greet(): void;
 }
 
-@injectable()
 export class Bar implements IBar {
   constructor() {
     this.val = Math.random();
@@ -20,6 +20,7 @@ export class Bar implements IBar {
   }
 }
 
+@injectable()
 export class Foo {
   constructor(@inject(BarKey) private readonly bar: IBar) {}
 

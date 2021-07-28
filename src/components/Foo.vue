@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import { defineComponent, inject } from "vue";
-import { Bar, Foo } from "../model/FooBar";
+import { Foo } from "../model/FooBar";
 
 export default defineComponent({
   setup() {

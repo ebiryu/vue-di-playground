@@ -6,9 +6,10 @@
 </template>
 
 <script lang="ts">
+import { container } from "tsyringe";
 import { defineComponent, provide } from "vue";
 import FooComponents from "./components/Foo.vue";
-import { Bar, Foo } from "./model/FooBar";
+import { Bar, BarKey, Foo, FooKey } from "./model/FooBar";
 
 export default defineComponent({
   name: "App",
@@ -16,7 +17,9 @@ export default defineComponent({
     FooComponents,
   },
   setup() {
-    provide("bar", new Foo(new Bar()));
+    container.register(BarKey, { useClass: Bar });
+    container.register(FooKey, { useClass: Foo });
+    provide("bar", container.resolve(FooKey));
   },
 });
 </script>
