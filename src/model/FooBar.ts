@@ -1,7 +1,11 @@
+import "reflect-metadata";
+import { injectable } from "tsyringe";
+
 interface IBar {
   greet(): void;
 }
 
+@injectable()
 export class Bar implements IBar {
   constructor() {}
 
